@@ -43,7 +43,7 @@ def main():
         get_post()
         send_post(postid)
         postid['id'] = get_post()[0]
-        time.sleep(15)
+        time.sleep(30)
 
 if __name__ == "__main__":
     main()
