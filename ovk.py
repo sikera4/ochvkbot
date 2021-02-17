@@ -32,18 +32,22 @@ def get_post():
         post = [newid, data]
         return post
         
-def send_post(postid):
-    
-    if get_post()[0] > postid['id']:
-        bot.send_photo(channel, get_post()[1])
+def send_post():
+    with open('id.txt', 'r+') as ids:
+        idlist = []
+        for i in ids:
+            idlist.append(i)
+        postid = int(idlist[-1])  
+        if get_post()[0] > postid:
+            bot.send_photo(channel, get_post()[1])
+            ids.write('\n' + str(get_post()[0]))
+        
 
 def main():
-    postid = {'id': 1966}
     while True:
         get_post()
-        send_post(postid)
-        postid['id'] = get_post()[0]
-        time.sleep(30)
+        send_post()     
+        time.sleep(15)
 
 if __name__ == "__main__":
     main()
